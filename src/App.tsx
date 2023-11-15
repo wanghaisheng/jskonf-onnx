@@ -1,24 +1,17 @@
-import { Layout, Typography } from 'antd';
-import Styles from './assets/App.module.scss';
+import { Layout } from 'antd';
 import ImageUpload from './ImageUpload';
-import { predictionHelper } from './PredictionHelper';
+import PredictionActions from './PredictionActions';
 import PredictionImage from './PredictionImage';
+import Styles from './assets/App.module.scss';
 
 function App() {
     return (
         <Layout className={Styles.PageContainer}>
-            <Layout.Content>
-                <ImageUpload />
+            <ImageUpload />
 
-                <Typography.Text
-                    strong
-                    className={Styles.StatusText}
-                >
-                    EmbeddingStatus: <Typography.Text>{predictionHelper.embeddingStatus}</Typography.Text>
-                </Typography.Text>
+            <PredictionActions />
 
-                <PredictionImage />
-            </Layout.Content>
+            <PredictionImage />
         </Layout>
     );
 }
