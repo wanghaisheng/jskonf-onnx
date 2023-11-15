@@ -7,9 +7,11 @@ import Styles from './assets/App.module.scss';
 function App() {
     return (
         <Layout className={Styles.PageContainer}>
-            <ImageUpload />
+            <div className={Styles.Header}>
+                <ImageUpload />
 
-            <PredictionActions />
+                <PredictionActions />
+            </div>
 
             <PredictionImage />
         </Layout>

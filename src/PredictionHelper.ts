@@ -2,6 +2,7 @@ import { signal } from "@preact/signals-react";
 import { env, InferenceSession, Tensor } from "onnxruntime-web";
 import { ClickType, EmbeddingStatus, IClickPoint, ModelReturnType } from "./entities";
 import { onnxMaskToImage } from "./utils/maskUtils";
+import { UploadChangeParam, UploadFile } from "antd/es/upload";
 
 export class PredictionHelper {
     embedding: string;
@@ -46,13 +47,11 @@ export class PredictionHelper {
         this.session = await InferenceSession.create(this.modelUrl);
     }
 
-    onDropImage(e: React.DragEvent) {
-        e.preventDefault();
-        e.stopPropagation();
-        const files = e.dataTransfer.files;
-        if (files?.length > 0) {
-            this.loadImage(files[0]);
-        }
+    onDropImage(info: UploadChangeParam<UploadFile<any>>) {
+        this.clearCanvas();
+
+        this.loadImage(info.file.originFileObj);
+
     }
 
     loadImage(file: File) {
@@ -225,8 +224,8 @@ export class PredictionHelper {
             pointLabels[i] = clicks[i].clickType;
         }
 
-    // Add in the extra point/label when only clicks and no box
-    // The extra point is at (0, 0) with label -1
+        // Add in the extra point/label when only clicks and no box
+        // The extra point is at (0, 0) with label -1
 
         pointCoords[2 * n] = 0.0;
         pointCoords[2 * n + 1] = 0.0;
