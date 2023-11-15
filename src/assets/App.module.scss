@@ -1,6 +1,6 @@
 .PageContainer {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
     align-items: center;
@@ -30,8 +30,6 @@
 
     .PredictionImage {
         display: block;
-        border: 1px solid red;
-
         margin: 48px auto;
     }
 }
