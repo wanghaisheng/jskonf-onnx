@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Layout, Typography } from 'antd';
+import Styles from './assets/App.module.scss';
+import ImageUpload from './ImageUpload';
+import { predictionHelper } from './PredictionHelper';
+import PredictionImage from './PredictionImage';
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <Layout className={Styles.PageContainer}>
+            <Layout.Content>
+                <ImageUpload />
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+                <Typography.Text
+                    strong
+                    className={Styles.StatusText}
+                >
+                    EmbeddingStatus: <Typography.Text>{predictionHelper.embeddingStatus}</Typography.Text>
+                </Typography.Text>
+
+                <PredictionImage />
+            </Layout.Content>
+        </Layout>
+    );
 }
 
-export default App
+export default App;

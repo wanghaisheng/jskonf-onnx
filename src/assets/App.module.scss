@@ -1,0 +1,26 @@
+.PageContainer {
+    width: 100vw;
+    height: 100vh;
+
+    .ImageUpload {
+        display: block;
+        width: 500px;
+        height: 200px;
+
+        padding: 24px;
+        margin: 48px auto;
+    }
+
+    .StatusText{
+        display: block;
+        text-align: center;
+    }
+
+    .PredictionImage {
+        display: block;
+        border: 1px solid red;
+
+
+        margin: 48px auto;
+    }
+}
