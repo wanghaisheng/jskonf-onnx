@@ -1,8 +1,8 @@
 import { signal } from "@preact/signals-react";
+import { UploadChangeParam, UploadFile } from "antd/es/upload";
 import { env, InferenceSession, Tensor } from "onnxruntime-web";
 import { ClickType, EmbeddingStatus, IClickPoint, ModelReturnType } from "./entities";
 import { onnxMaskToImage } from "./utils/maskUtils";
-import { UploadChangeParam, UploadFile } from "antd/es/upload";
 
 export class PredictionHelper {
     embedding: string;
@@ -15,7 +15,7 @@ export class PredictionHelper {
     imageDataUri: string;
 
     constructor (public ImageId: string) {
-        this.onDropImage = this.onDropImage.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onRemoveImage = this.onRemoveImage.bind(this);
         this.onClickImage = this.onClickImage.bind(this);
         this.clearCanvas = this.clearCanvas.bind(this);
@@ -42,16 +42,17 @@ export class PredictionHelper {
     }
 
     async initModel() {
+        if (this.session) return;
         env.wasm.wasmPaths = this.wasmPaths;
 
         this.session = await InferenceSession.create(this.modelUrl);
     }
 
-    onDropImage(info: UploadChangeParam<UploadFile<any>>) {
+    onChangeImage(info: UploadChangeParam<UploadFile<any>>) {
+        if (info.file.status !== "done") return;
         this.clearCanvas();
 
         this.loadImage(info.file.originFileObj);
-
     }
 
     loadImage(file: File) {

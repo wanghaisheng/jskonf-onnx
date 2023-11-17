@@ -21,15 +21,20 @@
         margin: 24px auto;
     }
 
-    .StatusText {
+    .Status {
         display: block;
         text-align: center;
 
         margin-bottom: 24px ;
+
+        .StatusText{
+            margin: 0 8px;
+        }
     }
 
     .PredictionImage {
         display: block;
         margin: 24px auto;
+
     }
 }

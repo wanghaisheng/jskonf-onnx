@@ -7,6 +7,13 @@ export enum EmbeddingStatus {
     Failed = "Failed",
 }
 
+export const StatusMap = {
+    [EmbeddingStatus.NotLoaded]: "warning",
+    [EmbeddingStatus.Loading]: "processing",
+    [EmbeddingStatus.Loaded]: "success",
+    [EmbeddingStatus.Failed]: "error",
+} as const;
+
 
 export interface IModelScale {
     samScale: number;

@@ -9,7 +9,7 @@ export default function ImageUpload() {
     return (
         <Dragger
             name="file"
-            onChange={predictionHelper.onDropImage}
+            onChange={predictionHelper.onChangeImage}
             action={() => Promise.resolve('done')}
             customRequest={e => e.onSuccess({ file: e.file })}
             className={Styles.ImageUpload}
